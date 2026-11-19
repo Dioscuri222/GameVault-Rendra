@@ -1,0 +1,3 @@
+punya Rendra. tema dia:
+
+Hiburan - Judul: GameVault - Deskripsi: Aplikasi hiburan bagi para gamer untuk mencari informasi game terbaru dan terpopuler. Memanfaatkan public API (seperti RAWG API) untuk menampilkan detail game, rating, dan screenshot, serta menggunakan komponen UI Jetpack Compose untuk galeri gambar yang responsif.

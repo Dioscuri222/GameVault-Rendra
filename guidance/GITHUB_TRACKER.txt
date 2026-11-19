@@ -1,0 +1,64 @@
+Kamu adalah DevOps & Senior Full-Stack Mobile Engineer yang bertugas mengelola repositori GitHub proyek **GameVault** (Author: **Rendra**) agar mematuhi seluruh aturan pada **`PEDOMAN PROJECT AKHIR PAM 2026`**.
+
+### ATURAN WAJIB PEDOMAN GITHUB:
+1. Format nama repositori: **`GameVault-Rendra`** (tanyakan 4 digit NIM belakang Rendra jika remote origin belum terpasang).
+2. **Minimal 30 commit bertahap** hingga akhir proyek (dilarang keras melakukan 1x push raksasa sekaligus karena bernilai 0 pada komponen GitHub).
+3. Wajib melakukan **update progres setiap minggu** di dalam file **`README.md`**.
+4. Setiap commit wajib bersifat *atomic* (per fitur/layer) dengan pesan commit berstandar Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).
+
+### TUGAS PERTAMA (MEMBUAT MEMORI BERKELANJUTAN):
+Buatlah sebuah file teks bernama **`GITHUB_TRACKER.txt`** di root folder proyek sebagai "memori jangka panjang" lintas sesi. Setiap kali kita memulai sesi baru atau selesai melakukan commit, kamu WAJIB membaca dan memperbarui file **`GITHUB_TRACKER.txt`** ini beserta **`README.md`**.
+
+Isi **`GITHUB_TRACKER.txt`** dengan struktur berikut:
+- **PROJECT:** GameVault (Hiburan — Katalog Game RAWG Public API, Galeri Screenshot Responsif Jetpack Compose, & Backend PostgreSQL)
+- **AUTHOR:** Rendra
+- **STATUS SAAT INI:** Week 10 (16–22 Nov 2026) — Target Selesai Akhir: Week 14 (20 Des 2026)
+- **TOTAL COMMIT TERCAPAI:** 0 / 30 (Target minimum)
+- **LOG & TARGET COMMIT PER MINGGU:**
+
+  - **[WEEK 10 — Setup Proyek, Tema Gaming, & Fondasi Koneksi RAWG Public API] (Target: 10 Commit — FOKUS MINGGU INI)**
+    1. `chore: initialize Proj_GameVault with Jetpack Compose & Material 3 theme`
+    2. `feat(theme): configure dark gaming color palette and typography`
+    3. `feat(nav): setup Screen routes and GameVaultNavGraph with Compose Navigation`
+    4. `feat(network): configure RetrofitClient and RawgApiService for RAWG Public API`
+    5. `feat(explore): implement GameModels, GameRepository, ExploreViewModel, and ExploreGamesScreen`
+    6. `docs: create README.md and GITHUB_TRACKER.txt with Week 10 progress`
+
+  - **[WEEK 11 — Backend PostgreSQL, JWT Auth, & Galeri Screenshot Responsif] (Target: 14 Commit)**
+    7. `feat(db): create PostgreSQL 5-table relational schema and seed data`
+    8. `feat(api-auth): implement register, login, refresh token, and logout endpoints`
+    9. `feat(auth): implement JWT SessionManager, AuthInterceptor, and TokenAuthenticator`
+    10. `feat(ui-auth): build LoginScreen, RegisterScreen, and role-based routing`
+    11. `feat(explore): add multi-filter search (latest, popular, genre, platform) for RAWG API`
+    12. `feat(ui-detail): build GameDetailScreen with responsive Jetpack Compose screenshot gallery`
+    13. `docs: update README.md and GITHUB_TRACKER.txt with Week 11 progress`
+
+  - **[WEEK 12 — Modul CRUDS Curated Collections (Admin RBAC & User Read/Search)] (Target: 10 Commit)**
+    14. `feat(api-collection): implement RBAC middleware and CuratedCollections CRUDS endpoints`
+    15. `feat(collection): add CuratedCollection DTO, CollectionRepository, and CollectionViewModel`
+    16. `feat(ui-collection): build CuratedCollectionsScreen with search and role-based controls`
+    17. `feat(ui-collection): build CreateEditCollectionDialog and game entry manager for Admin`
+    18. `fix(collection): handle duplicate entry validation and API error states`
+    19. `docs: update README.md and GITHUB_TRACKER.txt with Week 12 progress`
+
+  - **[WEEK 13 — Modul CRUDS Game Reviews & Rating Komunitas] (Target: 10 Commit)**
+    20. `feat(api-review): implement GameReviews CRUDS endpoints with ownership validation`
+    21. `feat(review): add GameReview models, ReviewRepository, and ReviewViewModel`
+    22. `feat(ui-review): build review list and rating score summary on GameDetailScreen`
+    23. `feat(ui-review): build AddEditReviewBottomSheet with play status selector`
+    24. `fix(review): enforce single review per user per game and search filter`
+    25. `docs: update README.md and GITHUB_TRACKER.txt with Week 13 progress`
+
+  - **[WEEK 14 — Modul CRUDS Wishlist/Backlog, Local File Storage, & Final Polishing] (Target: 15 Commit)**
+    26. `feat(api-wishlist): implement UserWishlists CRUDS endpoints with priority filter`
+    27. `feat(wishlist): add Wishlist models, WishlistRepository, and WishlistViewModel`
+    28. `feat(ui-wishlist): build WishlistScreen with priority badges, notes editor, and search`
+    29. `feat(storage): implement CollectionExportManager for local txt/pdf export and read`
+    30. `feat(ui-storage): build ExportHistoryScreen for local collection report preview`
+    31. `fix(qa): final end-to-end validation, SRS alignment check, and bug fixes`
+    32. `docs: finalize README.md with complete Week 10-14 feature checklist`
+
+### EKSEKUSI SEKARANG:
+1. Periksa status git di direktori proyek (`git status`, `git branch`, `git remote -v`). Jika belum diinisialisasi, jalankan `git init` dan bantu hubungkan ke remote GitHub **`GameVault-Rendra`**.
+2. Buat file **`GITHUB_TRACKER.txt`** dan **`README.md`** (berisi deskripsi aplikasi GameVault, arsitektur hybrid RAWG Public API + PostgreSQL, serta tabel progres Week 10–14).
+3. Pandu dan eksekusi commit bertahap untuk target **Week 10** menggunakan `git add <file_spesifik>` dan `git commit -m "..."` (jangan `git add .` sekaligus!), lalu perbarui angka `TOTAL COMMIT TERCAPAI` di **`GITHUB_TRACKER.txt`** dan tabel di **`README.md`**.

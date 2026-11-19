@@ -1,0 +1,1 @@
+Baca file `GITHUB_TRACKER.txt` dan `README.md` di root proyek GameVault. Cek status file dengan `git status`, lanjutkan pengerjaan atau pecah perubahan terbaru menjadi atomic commit sesuai daftar target minggu aktif di `GITHUB_TRACKER.txt`. Setelah selesai, perbarui checklist, jumlah total commit di `GITHUB_TRACKER.txt`, dan tabel progres di `README.md`.

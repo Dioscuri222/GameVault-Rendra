@@ -1,0 +1,79 @@
+Kamu adalah Full-Stack Mobile Architect, System Analyst, dan Technical Writer profesional. Tugasmu adalah membangun proyek aplikasi mobile **GameVault** secara menyeluruh (end-to-end) beserta dokumen **Software Requirements Specification (SRS)** dan seluruh diagram **`.drawio` XML** yang valid.
+
+---
+
+### 0. WORKSPACE, FILE REFERENSI, & ATURAN PENYIMPANAN
+- **Lokasi Workspace Utama:** Folder Google Drive **`Pengembangan Aplikasi Mobile > Punya Rendra`** (direkomendasikan langsung bekerja pada Google Drive ini atau direktori lokal yang tersinkronisasi dengannya).
+- **File Referensi yang Sudah Tersedia di Dalam Folder:**
+  1. **`Tema.txt`**: Berisi deskripsi tema dan ruang lingkup aplikasi **GameVault**.
+  2. **`Software Requirement Specification Document`**: File template resmi SRS (halaman judul, tabel atribut dokumen, *Revision History*, daftar isi, dan kerangka Bab 1–5 + Appendix).
+  3. **`PEDOMAN PROJECT AKHIR PAM 2026 (2).pdf`**: Dokumen aturan wajib proyek akhir mata kuliah Pengembangan Aplikasi Mobile.
+- **Instruksi Pengelolaan File:**
+  - Baca ketiga file di atas terlebih dahulu sebagai acuan mutlak.
+  - **JANGAN MENGUBAH STRUKTUR TEMPLATE SRS:** Isi dan lengkapi dokumen SRS langsung mengikuti format, tabel, font, penomoran, dan struktur asli dari file `Software Requirement Specification Document` tanpa menghapus bagian template mana pun.
+  - Simpan seluruh hasil dokumen SRS yang telah diisi, file diagram `.drawio`/`.png`, serta arsip kode proyek ke dalam subfolder **`Di Edit`** di dalam folder **`Punya Rendra`**.
+
+---
+
+### 1. IDENTITAS & KONTEKS PROYEK (SESUAI `Tema.txt`)
+- **Judul Aplikasi:** GameVault
+- **Kategori / Tema:** Hiburan (Entertainment & Gaming Information Hub)
+- **Author / Pemilik Proyek:** Rendra
+- **Deskripsi Sistem:** Aplikasi hiburan berbasis Android bagi para gamer untuk mencari informasi game terbaru dan terpopuler. Memanfaatkan public API (**RAWG Video Games Database API**) untuk menampilkan detail game, rating, dan screenshot, serta menggunakan komponen UI **Jetpack Compose** untuk galeri gambar yang responsif (LazyVerticalGrid, HorizontalPager, dan AsyncImage Coil). Selain itu, sistem dilengkapi **REST API Backend buatan sendiri (Node.js/Express + PostgreSQL)** untuk autentikasi JWT, pemisahan peran (`ADMIN` vs `USER`), manajemen **Koleksi Kurasi Game**, **Ulasan & Rating Pengguna**, **Wishlist / Backlog Gamer**, serta **Local File Storage** untuk ekspor dan baca laporan koleksi game di perangkat.
+
+---
+
+### 2. KEPATUHAN TERHADAP `PEDOMAN PROJECT AKHIR PAM 2026`
+Seluruh rancangan SRS dan implementasi kode wajib memenuhi seluruh persyaratan minimal pedoman:
+1. **UI Framework:** 100% **Jetpack Compose** (Material 3) & multi-page routing menggunakan **Navigation Compose** (dilarang menggunakan XML Layout / framework lain).
+2. **Arsitektur State Management:** Wajib menggunakan pola **MVVM** (`Model - Repository - ViewModel - UI Screen`).
+3. **Authentication & Authorization:** Implementasi Register, Login, **Access Token (JWT)**, dan **Refresh Token** (`TokenAuthenticator`), serta **Role-Based UI & API** (`ADMIN` vs `USER`).
+4. **Database & Entitas Relasional:** Menggunakan **PostgreSQL** (dilarang menggunakan SQLite/Room) dengan **minimal 4–5 entitas utama yang saling berelasi**:
+   - `users` (`id_user`, `nama_lengkap`, `email`, `password_hash`, `gamer_tag`, `role` [`ADMIN`, `USER`], `refresh_token`, `created_at`)
+   - `curated_collections` (`id_collection`, `title`, `category_tag`, `description`, `banner_url`, `created_by` FK `users`, `created_at`)
+   - `collection_games` (`id_entry`, `collection_id` FK `curated_collections`, `rawg_game_id`, `game_title`, `cover_image`, `curator_note`)
+   - `game_reviews` (`id_review`, `user_id` FK `users`, `rawg_game_id`, `game_title`, `rating_score` [1.0–5.0], `play_status` [`PLAYING`, `COMPLETED`, `DROPPED`], `review_text`, `created_at`, `updated_at`)
+   - `user_wishlists` (`id_wishlist`, `user_id` FK `users`, `rawg_game_id`, `game_title`, `cover_image`, `released_date`, `metacritic_score`, `priority_level` [`HIGH`, `MEDIUM`, `LOW`], `notes`, `created_at`, `updated_at`)
+5. **Minimal 5 Fitur CRUDS Penuh (Create, Read, Update, Delete, Search):**
+   - **Modul 1 (`Auth & Session`):** Register, Login, Auto-Refresh Token, Logout, Update Profil.
+   - **Modul 2 (`Explore Games — RAWG Public API`):** Read & Multi-Filter Search game terbaru/terpopuler/genre/platform (`GET /games`), Detail Game (`GET /games/:id`), dan Galeri Screenshot Responsif (`GET /games/:id/screenshots`).
+   - **Modul 3 (`Curated Collections`):** CRUDS penuh oleh `ADMIN` dan Read/Search + lihat daftar game kurasi oleh `USER`.
+   - **Modul 4 (`Game Reviews & Ratings`):** CRUDS penuh ulasan & skor rating game oleh `USER` (validasi kepemilikan `user_id` atau moderasi `ADMIN`).
+   - **Modul 5 (`Gamer Wishlist / Backlog & Local File Storage`):** CRUDS penuh daftar wishlist game milik pengguna serta fitur simpan (*export*) dan baca kembali laporan koleksi/backlog ke penyimpanan lokal perangkat (`.txt` / `.pdf`).
+6. **Keselarasan 100% SRS & Kode:** Setiap endpoint, nama tabel, kolom, validasi, dan alur pada kode wajib identik dengan dokumen SRS (menghindari penalti pengurangan nilai 50%).
+7. **Struktur GitHub & Progress Bertahap:** Siapkan juga struktur repositori berformat `4NIMBelakang_GameVault` lengkap dengan file `README.md` berisi tabel progres mingguan (untuk mendukung minimal 30 commit bertahap, tidak push sekali jadi).
+
+---
+
+### 3. STRUKTUR WAJIB DOKUMEN SRS (IKUTI TEMPLATE `Software Requirement Specification Document`)
+Lengkapi dokumen SRS tanpa mengubah struktur bawaan template:
+- **Halaman Judul, Tabel Document ID/Version, & Revision History:** Project Name `GameVault`, Author `Rendra`, Version `1.0`.
+- **1. Introduction:** `1.1 Purpose`, `1.2 Document Conventions`, `1.3 Intended Audience and Reading Suggestions`, `1.4 Product Scope`, `1.5 References`.
+- **2. Overall Description:** `2.1 Product Perspective`, `2.2 Product Functions`, `2.3 User Classes and Characteristics`, `2.4 Operating Environment`, `2.5 Design and Implementation Constraints`, `2.6 User Documentation`, `2.7 Assumptions and Dependencies`.
+- **3. System Features:**
+  - `3.1 Arsitektur Sistem & Skema Basis Data Relasional` (ERD & Kamus Data 5 tabel).
+  - `3.2 Autentikasi, Otorisasi Peran, & Manajemen Sesi JWT` (`REQ-1` s/d `REQ-7`).
+  - `3.3 Eksplorasi Katalog Game, Pencarian Multi-Filter, & Galeri Screenshot Responsif (RAWG Public API)` (`REQ-8` s/d `REQ-14`).
+  - `3.4 Manajemen Koleksi Kurasi Game (Admin CRUDS & User Read/Search)` (`REQ-15` s/d `REQ-21`).
+  - `3.5 Sistem Ulasan, Skor Rating, & Status Bermain Komunitas` (`REQ-22` s/d `REQ-28`).
+  - `3.6 Manajemen Wishlist / Backlog Gamer & Ekspor Laporan Koleksi Lokal` (`REQ-29` s/d `REQ-35`).
+  - **Format Wajib Setiap Subbab (3.2 s/d 3.6):** `3.x.1 Description and Priority` (skor `Benefit`, `Penalty`, `Cost`, `Risk` 1–9), `3.x.2 Stimulus/Response Sequences`, `3.x.3 Functional Requirements` (`REQ-1`–`REQ-35`), `3.x.4 Flow Diagram`, dan `3.x.5 Activity Diagram` (4 skenario CRUDS menggunakan **3 Swimlane vertikal**: `1. User / Admin`, `2. Aplikasi Android (GameVault)`, `3. Backend REST API / RAWG API & Database`).
+- **4. External Interface Requirements:** `4.1 User Interfaces`, `4.2 Hardware Interfaces`, `4.3 Software Interfaces`, `4.4 Communications Interfaces`.
+- **5. Other Nonfunctional Requirements:** `5.1 Performance Requirements`, `5.2 Safety Requirements`, `5.3 Security Requirements`, `5.4 Software Quality Attributes`, `5.5 Business Rules`.
+- **Appendix A: Glossary** & **Appendix B: Analysis Models**.
+
+---
+
+### 4. ATURAN DIAGRAM `.drawio` XML
+- Hasilkan seluruh diagram (Use Case Diagram, ERD, Flow Diagram, dan Activity Diagram 3 Swimlane) dalam format **XML `.drawio` murni** di subfolder **`Di Edit`**.
+- Gunakan jalur ortogonal rapi (`edgeStyle=orthogonalEdgeStyle`), hindari kurung kurawal `{}` pada teks URL (gunakan `:id` atau `...`), dan gunakan skema warna konsisten (Start/Sukses `#d5e8d4`, Proses Android `#dae8fc`, Proses API/DB `#e1d5e7`, Decision `#fff2cc`, Error/End `#f8cecc`).
+
+---
+
+### 5. URUTAN EKSEKUSI
+1. **Langkah 1:** Baca `Tema.txt`, template `Software Requirement Specification Document`, dan `PEDOMAN PROJECT AKHIR PAM 2026 (2).pdf` dari folder Google Drive **`Pengembangan Aplikasi Mobile > Punya Rendra`**.
+2. **Langkah 2:** Isi dokumen SRS secara penuh sesuai template asli dan simpan hasilnya ke subfolder **`Di Edit`**.
+3. **Langkah 3:** Generate seluruh file diagram `.drawio` untuk Bab 2 dan Bab 3 (3.1–3.6) ke subfolder **`Di Edit`**.
+4. **Langkah 4:** Bangun kode lengkap Backend Node.js/Express + PostgreSQL (`gamevault-api/`) dan Aplikasi Android Jetpack Compose (`Proj_GameVault/`) beserta `README.md` progres mingguan ke subfolder **`Di Edit`**.
+
+Mulai dengan membaca ketiga file referensi di folder Google Drive **`Pengembangan Aplikasi Mobile > Punya Rendra`** sekarang.
