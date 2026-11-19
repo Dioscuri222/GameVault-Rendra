@@ -1,0 +1,70 @@
+================================================================================
+GAMEVAULT — GITHUB PROGRESS & ATOMIC COMMIT TRACKER (PERSISTENT MEMORY)
+================================================================================
+
+- PROJECT             : GameVault (Hiburan — Katalog Game RAWG Public API, Galeri Screenshot Responsif Jetpack Compose, & Backend PostgreSQL)
+- AUTHOR              : Rendra
+- REPOSITORY          : https://github.com/Dioscuri222/GameVault-Rendra.git (branch: master)
+- STATUS SAAT INI     : Week 10 Selesai (16–22 Nov 2026) — Target Selesai Akhir: Week 14 (20 Des 2026)
+- TOTAL COMMIT        : 13 / 30 (Target minimum 30 commit bertahap; 1 Initial commit + 12 atomic commit Week 10)
+- VERIFIKASI BUILD    : ./gradlew testDebugUnitTest assembleDebug -> BUILD SUCCESSFUL
+
+--------------------------------------------------------------------------------
+LOG & TARGET COMMIT PER MINGGU
+--------------------------------------------------------------------------------
+
+[WEEK 10 — Setup Proyek, Tema Gaming, & Fondasi Koneksi RAWG Public API] (Status: DONE — 12/10 Commit)
+  [x] 0.  `24d1271` Initial commit
+  [x] 1.  `a6ec808` chore: initialize Proj_GameVault with Jetpack Compose & Material 3 theme
+  [x] 2.  `55ca22d` feat(theme): configure dark gaming color palette and typography
+  [x] 3.  `9130729` feat(nav): setup Screen routes and GameVaultNavGraph with Compose Navigation
+  [x] 4.  `d2f481a` feat(model): define RAWG API DTOs, domain GameModels, and UiState
+  [x] 5.  `0d0a225` feat(network): configure RetrofitClient and RawgApiService for RAWG Public API
+  [x] 6.  `cd0aae2` feat(explore): implement GameRepository for RAWG catalog and search
+  [x] 7.  `5fc1974` feat(explore): implement ExploreViewModel and ExploreUiState for reactive catalog
+  [x] 8.  `ecbc032` feat(ui-explore): build reusable GameCard, badges, and state components
+  [x] 9.  `79179b0` feat(ui-explore): build ExploreGamesScreen and wire into GameVaultNavGraph
+  [x] 10. `819ec6f` test(explore): add unit tests for GameDto mapper and ExploreViewModel
+  [x] 11. `3c6dfdc` fix(build): align compileSdk to 37.1 for AndroidX dependencies
+  [x] 12. (commit ini) docs: create README.md and GITHUB_TRACKER.txt with Week 10 progress
+
+[WEEK 11 — Backend PostgreSQL, JWT Auth, & Galeri Screenshot Responsif] (Status: NEXT — Target: 14 Commit)
+  [ ] feat(db): create PostgreSQL 5-table relational schema and seed data
+  [ ] feat(api-auth): implement register, login, refresh token, and logout endpoints
+  [ ] feat(auth): implement JWT SessionManager, AuthInterceptor, and TokenAuthenticator
+  [ ] feat(ui-auth): build LoginScreen, RegisterScreen, and role-based routing
+  [ ] feat(explore): add multi-filter search (latest, popular, genre, platform) for RAWG API
+  [ ] feat(ui-detail): build GameDetailScreen with responsive Jetpack Compose screenshot gallery
+  [ ] docs: update README.md and GITHUB_TRACKER.txt with Week 11 progress
+
+[WEEK 12 — Modul CRUDS Curated Collections (Admin RBAC & User Read/Search)] (Status: PLANNED — Target: 10 Commit)
+  [ ] feat(api-collection): implement RBAC middleware and CuratedCollections CRUDS endpoints
+  [ ] feat(collection): add CuratedCollection DTO, CollectionRepository, and CollectionViewModel
+  [ ] feat(ui-collection): build CuratedCollectionsScreen with search and role-based controls
+  [ ] feat(ui-collection): build CreateEditCollectionDialog and game entry manager for Admin
+  [ ] fix(collection): handle duplicate entry validation and API error states
+  [ ] docs: update README.md and GITHUB_TRACKER.txt with Week 12 progress
+
+[WEEK 13 — Modul CRUDS Game Reviews & Rating Komunitas] (Status: PLANNED — Target: 10 Commit)
+  [ ] feat(api-review): implement GameReviews CRUDS endpoints with ownership validation
+  [ ] feat(review): add GameReview models, ReviewRepository, and ReviewViewModel
+  [ ] feat(ui-review): build review list and rating score summary on GameDetailScreen
+  [ ] feat(ui-review): build AddEditReviewBottomSheet with play status selector
+  [ ] fix(review): enforce single review per user per game and search filter
+  [ ] docs: update README.md and GITHUB_TRACKER.txt with Week 13 progress
+
+[WEEK 14 — Modul CRUDS Wishlist/Backlog, Local File Storage, & Final Polishing] (Status: PLANNED — Target: 15 Commit)
+  [ ] feat(api-wishlist): implement UserWishlists CRUDS endpoints with priority filter
+  [ ] feat(wishlist): add Wishlist models, WishlistRepository, and WishlistViewModel
+  [ ] feat(ui-wishlist): build WishlistScreen with priority badges, notes editor, and search
+  [ ] feat(storage): implement CollectionExportManager for local txt/pdf export and read
+  [ ] feat(ui-storage): build ExportHistoryScreen for local collection report preview
+  [ ] fix(qa): final end-to-end validation, SRS alignment check, and bug fixes
+  [ ] docs: finalize README.md with complete Week 10-14 feature checklist
+
+--------------------------------------------------------------------------------
+CATATAN KONFIGURASI SESI BERIKUTNYA
+--------------------------------------------------------------------------------
+1. Tambahkan `RAWG_API_KEY=<api_key_rawg_anda>` ke dalam `local.properties` agar katalog live RAWG Public API dapat dimuat di emulator/device.
+2. Seluruh commit wajib bersifat atomic (`git add <file_spesifik>`) dengan format Conventional Commits.
+3. Setiap akhir sesi pengerjaan, perbarui `GITHUB_TRACKER.txt` dan tabel progres mingguan di `README.md`.
