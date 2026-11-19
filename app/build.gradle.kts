@@ -16,7 +16,7 @@ val rawgApiKey = localProperties.getProperty("RAWG_API_KEY", "")
 android {
     namespace = "com.example.gamevault"
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
